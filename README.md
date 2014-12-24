@@ -28,3 +28,7 @@ Rigel is prefered over Rigelian as that sounds like it is a Debian distro.  I'm 
 From these components, I also hope to create a Source-Comping Package Management System called [Serak](http://simpsons.wikia.com/wiki/Serak_the_Preparer) (Not [Sarek](http://en.memory-alpha.org/wiki/Sarek).) which allow source packages to be used to create programs rather than binaries which rely on someone from Cannocal or Red Hat to update, which they don't do for all packages, and won't do immediately unless it affects their distribution.  [Slackware](http://www.slackware.com/) has something like this, and [they have an ARM distribution](http://arm.slackware.com/supportedplatforms/) but they don't explicitly say "This will work for Rapberry Pi" or "This will work for Odroid."  They do answer the question "Will it run on my device?". The answer: "Probably".
 
 Slackware is good, but what I think Slack lacks is an explaination as to "Why is it so good?".  Rigel aims to be the base for Kang and Kodos and any other Linux distros and architectures to use with confidence.
+
+Another thing Slackware is limited with it's tarball package tracking is from what I've read most everything is in a `.tgz` or `.tar.gz` form.  Serak won't limit itself to this format but be inclusive of other `.tar` formats including `.tar.bz2` and `.tar.xz`.
+
+Slackware has yet to support `systemd`.  Rigil distros will support the use of `systemd`.
