@@ -1,0 +1,84 @@
+#!/bin/bash
+# File: dlxt.sh
+# Info: Download and extract file packages like a git clone but for tarballs.
+# Author: Jason Charney (jrcharneyATgmailDOTcom, https://github.com/jrcharney/)
+# Date: 8 Feb 2015
+
+usage(){
+cat<<EOF
+dlxt - download extractor
+
+Download and extract files just like you would execute a git clone.
+This is mostly for tarballs (tar.gz, tar.bz2, tar.xz).
+Eventually it will expand to other file type but for now, we keep it
+simple.
+
+You can download a set of files or one file.
+
+I won't install software using this program as YMMV depending on
+architecture, distribution, and hardware factors.
+
+OPTIONS:
+-p FILE		Get a tarball package and extract it.
+-l FILE		Use a text list file and download software sequentially.
+-tp FILE	Test to see how dlxt would process would process a file.
+-tl FILE	Test to see how dlxt would process a file with a list of packages.
+-h		Show this message
+
+EOF
+exit 0
+}
+
+de(){
+ url=$1
+ case ${url##*.} in
+  gz)  ext="tar xzv" ;;
+  bz2) ext="tar xjv" ;;
+  xz)  ext="tar xJv" ;;
+  *)   echo "Sorry, I can't download ${url##*.} files yet. Aborting." && exit 1 ;;
+ esac
+ curl -SL $url | $ext
+ # echo "curl -SL $url | $ext"
+}
+
+dt(){
+ url=$1
+ case ${url##*.} in
+  gz)  ext="tar xzv" ;;
+  bz2) ext="tar xjv" ;;
+  xz)  ext="tar xJv" ;;
+  *)   echo "Sorry, I can't download ${url##*.} files yet. Aborting." && exit 1 ;;
+ esac
+ # curl -SL $url | $ext
+ echo "curl -SL $url | $ext"
+}
+
+[[ $# -eq 0 ]] && usage
+
+case $1 in
+ -f)
+	shift
+	# TODO: Test to see if there is another argument
+	filename="$1"
+	while read -r line; do
+		# TODO: Ignore blank lines and lines that begin with octothorpe
+		de $line
+	done < "$filename"
+	;;
+ -p)	shift; de $1;;
+ -tf)	shift
+	# TODO: Test to see if there is another argument
+	filename="$1"
+	while read -r line; do
+		# TODO: Ignore blank lines and lines that begin with octothorpe
+		dt $line
+	done < "$filename"
+	;;
+ -tp)	shift; dt $1;;
+ -h)	usage ;;
+ *)	echo "ERROR: Invalid option. Type 'dlxt -h' for options. Aborting." && exit 1 ;;
+esac
+
+# cd project
+# ./configure && make && sudo make install
+# cd ..
