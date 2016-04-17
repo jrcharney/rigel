@@ -1,3 +1,9 @@
+# DECOMMISSIONING
+
+I'm trying to sundown kang, kodos, and rigel.  Check out the [Hacktop](https://github.com/jrcharney/hacktop/) project or the [Hacktop Wiki](https://github.com/jrcharney/hacktop/wiki/).  I try to update that wiki as much as possible.
+
+Thank you for your interst in this project.
+
 rigel
 =====
 
